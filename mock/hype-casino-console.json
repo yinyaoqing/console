@@ -1,7 +1,7 @@
 {
   "uuid": "a49dc873-881e-450b-a767-b847842dffad",
   "lastMigration": 32,
-  "name": "Hype casino console",
+  "name": "console",
   "endpointPrefix": "",
   "latency": 0,
   "port": 3002,

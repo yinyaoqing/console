@@ -92,7 +92,7 @@ module.exports = configure(function (/* ctx */) {
       packager: {},
 
       builder: {
-        appId: 'hype-casino-console',
+        appId: 'console',
       },
     },
 

@@ -1,8 +1,8 @@
 {
-  "name": "hype-casino-console",
+  "name": "-console",
   "version": "0.0.1",
-  "description": "Hype Casino Console",
-  "productName": "Hype Casino Console",
+  "description": "Console",
+  "productName": "Console",
   "author": "Joseph Yin <>",
   "private": true,
   "scripts": {
