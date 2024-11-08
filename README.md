@@ -1,6 +1,6 @@
-# Hype Casino Console (hype-casino-console)
+#Console (console)
 
-Hype Casino Console
+Console
 
 ## Install the dependencies
 
