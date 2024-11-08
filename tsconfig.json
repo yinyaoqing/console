@@ -1,0 +1,34 @@
+{
+  "extends": "@quasar/app-vite/tsconfig-preset",
+  "compilerOptions": {
+    "target": "esnext", // 指定 ECMAScript 目標版本
+    "module": "esnext", // 指定使用的模組系統
+    "moduleResolution": "node", // 指定模組解析策略
+    "strict": true, // 啟用所有嚴格類型檢查選項
+    "jsx": "preserve", // 設定 JSX 轉換方式
+    "sourceMap": true, // 生成對應的 .map 文件
+    "baseUrl": "./src", // 設定基本路徑
+    "paths": {
+      // 設定路徑映射
+      "@/*": ["*"]
+    },
+    "esModuleInterop": true, // 允許從 CommonJS 模組導入
+    "skipLibCheck": true, // 跳過庫檢查以提高編譯速度
+    "forceConsistentCasingInFileNames": true, // 強制檔案名一致性
+    "types": ["quasar"]
+  },
+  "include": [
+    "src/**/*.ts", // 包含所有 TypeScript 檔案
+    "src/**/*.vue", // 包含所有 Vue 檔案
+    "src/**/*.d.ts", // 包含所有 .d.ts 檔案
+    "test/pages/LoginPage.vitest.test.ts"
+  ],
+  "exclude": [
+    "./dist",
+    "./.quasar",
+    "./node_modules",
+    "./src-capacitor",
+    "./src-cordova",
+    "./quasar.config.*.temporary.compiled*"
+  ]
+}

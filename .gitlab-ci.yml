@@ -1,0 +1,86 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  WEB_IN_DEV_IMAGE_NAME: hype-casino-console-dev
+  WEB_IN_STG_IMAGE_NAME: hype-casino-console-stg
+  DOCKER_REGISTRY: repo.kgs.asia/deploy
+  DOCKER_PUSH_SCRIPT_PATH: ./scripts/docker-push.sh
+  WEB_IN_DEV_CI_COMMIT_TAG_REGEX: /^dev-v\d+\.\d+\.\d+$/'
+  WEB_IN_STG_CI_COMMIT_TAG_REGEX: /^stg-v\d+\.\d+\.\d+$/'
+
+before_script:
+  - chmod +x ${DOCKER_PUSH_SCRIPT_PATH}
+
+# 定義 Web In Dev 的 Build Stage -----------------------------------------------------
+web-in-dev-build:
+  stage: build
+  environment: dev
+  script:
+    # 建立 Docker 映像檔，並指定環境變數
+    - docker build --no-cache --build-arg ENVIRONMENT=dev -t ${WEB_IN_DEV_IMAGE_NAME} .
+    # 執行 Docker 映像檔推送腳本
+    - ${DOCKER_PUSH_SCRIPT_PATH} ${CI_PIPELINE_ID} ${WEB_IN_DEV_IMAGE_NAME} ${DOCKER_REGISTRY}
+  rules:
+    # 僅在 tag 符合格式時觸發
+    - if: '$CI_COMMIT_TAG =~ /^dev-v\d+\.\d+\.\d+$/'
+  tags:
+    - development
+
+# 定義 Web In Stg 的 Build Stage -----------------------------------------------------
+web-in-stg-build:
+  stage: build
+  environment: stg
+  script:
+    # 建立 Docker 映像檔，並指定環境變數
+    - docker build --no-cache --build-arg ENVIRONMENT=stg -t ${WEB_IN_STG_IMAGE_NAME} .
+    # 執行 Docker 映像檔推送腳本
+    - ${DOCKER_PUSH_SCRIPT_PATH} ${CI_PIPELINE_ID} ${WEB_IN_STG_IMAGE_NAME} ${DOCKER_REGISTRY}
+  rules:
+    # 僅在 tag 符合格式時觸發
+    - if: '$CI_COMMIT_TAG =~ /^stg-v\d+\.\d+\.\d+$/'
+  tags:
+    - development
+
+# 定義 Web In Dev 的 Deploy Stage -----------------------------------------------------
+web-in-dev-deploy:
+  stage: deploy
+  environment: dev
+  script:
+    - cat "${PEM}" >> private.pem
+    - chmod 400 ./private.pem
+    - ssh -i ./private.pem -o StrictHostKeyChecking=no rocky@${TARGET} '
+        cd /home/rocky/hype-casino-console &&
+        sudo docker compose down &&
+        sudo docker system prune -af &&
+        sudo rm -rf dist/* &&
+        sudo docker pull repo.kgs.asia/deploy/hype-casino-console-dev:latest &&
+        sudo docker compose up -d
+      '
+    - rm -rf private.pem
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^dev-v\d+\.\d+\.\d+$/'
+  tags:
+    - development
+
+# 定義 Web In Stg 的 Deploy Stage -----------------------------------------------------
+web-in-stg-deploy:
+  stage: deploy
+  environment: stg
+  script:
+    - cat "${PEM}" >> private.pem
+    - chmod 400 ./private.pem
+    - ssh -i ./private.pem -o StrictHostKeyChecking=no rocky@${TARGET} '
+        cd /home/rocky/hype-casino-console &&
+        sudo docker compose down &&
+        sudo docker system prune -af &&
+        sudo rm -rf dist/* &&
+        sudo docker pull repo.kgs.asia/deploy/hype-casino-console-stg:latest &&
+        sudo docker compose up -d
+      '
+    - rm -rf private.pem
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^stg-v\d+\.\d+\.\d+$/'
+  tags:
+    - development

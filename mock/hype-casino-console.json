@@ -1,0 +1,230 @@
+{
+  "uuid": "a49dc873-881e-450b-a767-b847842dffad",
+  "lastMigration": 32,
+  "name": "Hype casino console",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "851ee028-0a85-461e-9a16-238b948369bd",
+      "name": "Auth",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "914ca1c8-e025-4eb0-9e97-ac7f8fd2a61d"
+        },
+        {
+          "type": "route",
+          "uuid": "d12a0df3-4b8b-498e-8ada-2123564e0f1a"
+        },
+        {
+          "type": "route",
+          "uuid": "c8d430b1-b0c3-4dbf-a994-04db4ec4cc2b"
+        },
+        {
+          "type": "route",
+          "uuid": "88d43788-a1e8-4acb-a571-45d07069a508"
+        }
+      ]
+    },
+    {
+      "uuid": "6560de88-0e5b-4db4-b0d6-5d742cc42775",
+      "name": "Main",
+      "children": []
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "914ca1c8-e025-4eb0-9e97-ac7f8fd2a61d",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "api/users/login",
+      "responses": [
+        {
+          "uuid": "cef53235-3605-4201-b522-93c3cc270123",
+          "body": "{\n  \"code\":\"2000000\",\n  \"trace_id\":\"691eb8dc-79bc-478d-8081-d55585d58ba8\",\n  \"data\":{\n    \"id\": \"1234567890\",\n    \"username\": \"joseph\",\n    \"role\": {\n      \"id\": 1,\n      \"name\": \"Admin\"\n      \"permissions\": [\n        \"010000\",\n        \"010100\",\n        \"010101\",\n        \"010102\",\n        \"010103\",\n        \"010104\",\n        \"010200\",\n        \"010201\",\n        \"010202\",\n        \"010203\",\n        \"010204\",\n        \"010300\",\n        \"010301\",\n        \"010302\",\n        \"010303\",\n        \"010304\",\n        \"010400\",\n        \"010401\",\n        \"010402\",\n        \"010403\",\n        \"010404\",\n        \"020000\",\n        \"020100\",\n        \"020101\",\n        \"020102\",\n        \"020103\",\n        \"020104\",\n        \"020200\",\n        \"020201\",\n        \"020202\",\n        \"020203\",\n        \"020204\",\n        \"020300\",\n        \"020301\",\n        \"020302\",\n        \"020303\",\n        \"020304\",\n        \"020400\",\n        \"020401\",\n        \"020402\",\n        \"020403\",\n        \"020404\",\n        \"020500\",\n        \"020501\",\n        \"020502\",\n        \"020503\",\n        \"020504\",\n        \"020600\",\n        \"020601\",\n        \"020602\",\n        \"020603\",\n        \"020604\",\n        \"020700\",\n        \"020701\",\n        \"020702\",\n        \"020703\",\n        \"020704\"\n      ],\n    },\n    \"status\": 1\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "8d48a105-1d29-4936-9871-044b504894c2",
+          "body": "{\n  \"code\":\"4000001\",\n  \"trace_id\":\"691eb8dc-79bc-478d-8081-d55585d58ba8\",\n  \"data\": \"account or password is incorrect\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c8d430b1-b0c3-4dbf-a994-04db4ec4cc2b",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/users?userId=12345",
+      "responses": [
+        {
+          "uuid": "671a041e-7a35-488d-82a9-2b99865ab6cc",
+          "body": "{\n  \"code\":\"2000000\",\n  \"trace_id\":\"691eb8dc-79bc-478d-8081-d55585d58ba8\",\n  \"data\":{\n    \"id\": \"1234567890\",\n    \"account\": \"joseph\",\n    \"role\": {\n      \"id\": 1,\n      \"name\": \"Admin\"\n    },\n    \"permissions\": [\n        \n    ],\n    \"status\": 1\n    \"createdAt\": \"2023-01-15T10:00:00Z\",\n    \"updatedAt\": \"2024-10-01T12:00:00Z\"\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "88d43788-a1e8-4acb-a571-45d07069a508",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/permissions",
+      "responses": [
+        {
+          "uuid": "fb121dea-a2df-4923-ab8d-3c66f393be91",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "d12a0df3-4b8b-498e-8ada-2123564e0f1a",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "api/users/logout",
+      "responses": [
+        {
+          "uuid": "6cfebcd3-20d3-4c15-a1de-7b17fdf8e135",
+          "body": "{\n  \"code\": \"2000000\",\n  \"trace_id\": \"691eb8dc-79bc-478d-8081-d55585d58ba8\",\n  \"data\": \"logout successful\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "851ee028-0a85-461e-9a16-238b948369bd"
+    },
+    {
+      "type": "folder",
+      "uuid": "6560de88-0e5b-4db4-b0d6-5d742cc42775"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
